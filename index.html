@@ -3,8 +3,74 @@
     <head>
         <title>Rock Paper Scissors</title>
         <meta charset="UTF-8"/>
+        <link href="styles/reset.css" rel="stylesheet">
+        <link href="styles/styles.css" rel="stylesheet">
     </head>
     <body>
+        <div id="game-window">
+            <div id="game-upper">
+                <div id="game-title">
+                    <h4>Alex Burman Presents</h4>
+                    <h1>ROCK PAPER SCISSORS</h1>
+                </div>
+                <div id="status-box">
+                    <div id="playing-status">
+                        <h3 id="playing-status-text">PLAYING - FIRST TO 5 WINS!</h3>
+                    </div>
+                    <div id="end-status">
+                        <div class="end-status-container">
+                            <h3 id="status-message">PLAYING</h3>
+                        </div>
+                        <div class="end-status-container">
+                            <button id="restart">Play Again?</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="scoreboard">
+                    <h3>SCORE</h3>
+                    <div id="score-info">
+                        <div class="score-el player-score-style"><span>YOU</span>></div>
+                        <div id="score" class="score-el">
+                            <span id="player-score" class="player-score-style">0</span>
+                            <span id="score-seperator">-</span>
+                            <span id="computer-score" class="computer-score-style">0</span>
+                        </div>
+                        <div class="score-el computer-score-style"><span>CPU</span></div>
+                    </div>
+                </div>
+                <div id="round-counter"><h3 id="rounds">ROUND: 0</h3></div>
+            </div>
+            <div id="game-status">
+                <div id="round-outcome">
+                    <div id="left-image">
+                        <div class="selection-img-container">
+                            <h3 class="placeholder-text">READY!</h3>
+                            <img id="player-select" class="selection-img">
+                        </div>
+                    </div>
+                    <div id="inbetween-image">
+                        <div id="round-middle-space">
+                            <h3>vs</h3>
+                        </div>
+                    </div>
+                    <div id="right-image">
+                        <div class="selection-img-container">
+                            <h3 class="placeholder-text">READY!</h3>
+                            <img id="computer-select" class="selection-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="move-selection">
+                <h4 id="move-select-message">Select Your Move</h4>
+                <div id="move-select-buttons">
+                    <button id="rock" class="selection-button btn-fx"><img src="images/rock.png"></button>
+                    <button id="paper" class="selection-button btn-fx"><img src="images/paper.png"></button>
+                    <button id="scissors" class="selection-button btn-fx"><img src="images/scissors.png"></button>
+                </div>
+            </div>
+        </div>
         <script src="scripts/rps.js"></script>
     </body>
 </html>

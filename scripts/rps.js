@@ -1,79 +1,113 @@
 "use strict"
 
-function computerPlay() {
+const finalRound = function() {
+    return scorePlayer >= maxScore || scoreComputer >= maxScore;
+}
 
+const finishGame = function() {
+    const winner = scorePlayer > scoreComputer ? 'You Win!' : 'You Lose!';
+
+    buttonsMoveSelect.forEach((btn) => {
+        btn.disabled = true
+        btn.classList.remove("btn-fx");
+    });
+    endGameMessage.textContent = winner;
+    endGameMessage.style.color = winner === 'You Win!' ? 'rgb(27, 142, 236)' : 'red';
+    document.querySelector('#end-status').style.display = '';
+    document.querySelector('#playing-status').style.display = 'none';
+}
+
+const playComputer = function() {
     const randomNum = Math.floor(Math.random() * 3);
 
-    return (randomNum === 0) ? "Rock" :
-           (randomNum === 1) ? "Paper" :
-           "Scissors";
+    return (randomNum === 0) ? "rock" :
+           (randomNum === 1) ? "paper" :
+           "scissors";
 }
 
-function fixWordCase(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-}
+let playRound = function(e) {
+    const computerSelection = playComputer();
+    const playerSelection = e.target.id;
 
-function game() {
-
-    let playerScore = 0;
-    let computerScore = 0;
-    let round = 0;
-
-    while (round < 5) {
-        let playerSelection = prompt();
-        let computerSelection =  computerPlay();
-
-        playerSelection = fixWordCase(playerSelection);
-
-        if (!isValid(playerSelection)) {
-            console.log(`"${playerSelection}" is not valid. Please enter a valid move`)
-            continue;
-        }
-
-        let roundWinner = playRound(playerSelection, computerSelection);
-
-        if (roundWinner === "player") {
-            console.log(`You win this round! ${playerSelection} beats ${computerSelection}`);
-            playerScore++;
-        } else if (roundWinner === "computer") {
-            console.log(`You lose this round! ${computerSelection} beats ${playerSelection}`);
-            computerScore++;
-        } else {
-            console.log(`This round is a tie! ${playerSelection} ties with ${computerSelection}`);
-        }
-        round++;
-    }
-    const gameWinner = getWinner(playerScore, computerScore);
-
-    console.log(gameWinner);
-}
-
-function getWinner(playerScore, computerScore) {
-    return ((playerScore > computerScore) 
-        ? `You've won the game! You scored ${playerScore} points against the computers ${computerScore} points!` 
-        : (playerScore < computerScore) 
-            ? `You've lost the game! The computer scored ${computerScore} points against your ${playerScore} points!` 
-            : `It's a tie! You and the computer both scored ${playerScore} points!`
-    );
-}
-
-function isValid(string) {
-    return rules.hasOwnProperty(string);
-}
-
-function playRound (playerSelection, computerSelection) {
-
-    if (rules[playerSelection] === computerSelection) {
-        return "player";
+    if (rules[playerSelection] == computerSelection) {
+        scorePlayer++;
     } else if (rules[computerSelection] == playerSelection) {
-        return "computer";
-    } else {
-        return "tie";
+        scoreComputer++;
     }
+
+    gameRound++;
+
+    updateGame(computerSelection, playerSelection);
+    if(finalRound()) {
+        finishGame();
+    }
+}
+
+const startGame = function() {
+    gameRound = 0;
+    scoreComputer = 0;
+    scorePlayer = 0;
+
+    updateGame();
+    buttonsMoveSelect.forEach((btn) => {
+        btn.disabled = false;
+        btn.classList.add("btn-fx");
+    });
+    document.querySelector('#end-status').style.display = 'none';
+    document.querySelector('#playing-status').style.display = '';
+    imageComputerSelection.style.display = 'none';
+    imagePlayerSelection.style.display = 'none';
+}
+
+const updateGame = function(computerSelection = '', playerSelection = '') {
+    displayScoreComputer.textContent = `${scoreComputer}`;
+    displayScorePlayer.textContent = `${scorePlayer}`;
+    document.querySelector('#rounds').textContent = `ROUND: ${gameRound}`
+
+    if(gameRound > 0) {
+        imageComputerSelection.style.display = '';
+        imagePlayerSelection.style.display = '';
+    }
+
+    imageComputerSelection.src = computerSelection 
+        ? `images/${computerSelection}.png`
+        : computerSelection;
+    imagePlayerSelection.src = playerSelection
+        ? `images/${playerSelection}.png`
+        : playerSelection;
+
 }
 
 const rules = {
-    Rock: "Scissors",
-    Paper: "Rock",
-    Scissors: "Paper"
+    rock: "scissors",
+    paper: "rock",
+    scissors: "paper"
+}
+
+document.querySelector('#end-status').style.display = 'none';
+
+
+const buttonRestart = document.querySelector('#restart');
+const buttonsMoveSelect = document.querySelectorAll('.selection-button');
+const displayScoreComputer = document.querySelector('#computer-score');
+const displayScorePlayer = document.querySelector('#player-score');
+const imageComputerSelection = document.querySelector('#computer-select');
+const imagePlayerSelection = document.querySelector('#player-select');
+const endGameMessage = document.querySelector('#status-message');
+
+let gameRound = 0;
+let scoreComputer = 0;
+let scorePlayer = 0;
+let maxScore = 5;
+
+imageComputerSelection.style.display = 'none';
+imagePlayerSelection.style.display = 'none';
+
+buttonRestart.addEventListener(('click'), startGame);
+buttonsMoveSelect.forEach((button) => button.addEventListener('click', playRound));
+
+console.log('test');
+
+const hideElement = function() {
+    document.querySelector('#rock').hidden = true;
 }
