@@ -1,0 +1,213 @@
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: monospace, Helvetica, sans-serif;
+    background-color: rgb(118, 193, 255);
+    color: rgba(24, 23, 23, 0.95)
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+#game-window {
+    background-color: #FFF;
+    max-width: 600px;
+    margin: auto;
+    border: solid;
+    border-width: 0 2px 2px 2px;
+    border-color: rgba(34, 34, 34, 0.85);
+    border-radius: 0 0 15px 15px;
+    overflow: hidden;
+}
+#game-title {
+    text-align: center;
+    font-size: 42px;
+    margin: auto;
+    margin: 15px 0 0 0;
+}
+#game-title h1 {
+    font-weight: 600;
+}
+#game-title h4 {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+#status-message {
+    text-align: center;
+}
+#status-box {
+    min-height: 30px;
+    margin: 25px 0;
+}
+#playing-status {
+    height: 60px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#playing-status-text {
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    margin: 11px 0;
+}
+#end-status {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.end-status-container {
+    height: 40px;
+    width: 45%;
+    margin: 10px 5px;
+}
+#status-message {
+    text-align: right;
+    font-size: 40px;
+    font-weight: 600;
+    margin: 0px 0;
+}
+#restart {
+    color: white;
+    background-color: rgb(27, 142, 236);
+    font-size: 18px;
+    font-weight: 600;
+    padding: 8px 6px;
+    border: solid;
+    border-color: rgb(27, 142, 236);
+    border-radius: 4px;
+}
+#restart:hover {
+    background-color: rgb(8, 126, 223);
+    border-color: rgb(8, 126, 223);
+}
+#scoreboard {
+    margin-bottom: 14px;
+}
+#scoreboard h3 {
+    text-align: center;
+    padding-bottom: 12px;
+    font-size: 20px;
+}
+#score-info {
+    font-size: 0;
+    white-space: nowrap;
+    width: 85%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+#score-info span {
+    font-size: 24px;
+}
+.score-el {
+    display: block;
+    width: 33%;
+    box-sizing: border-box;
+    text-align: center;
+}
+.player-score-style {
+    color: rgb(27, 142, 236);
+    font-weight: 600;
+}
+.computer-score-style {
+    color: red;
+    font-weight: 600;
+}
+#rounds {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 4px;
+}
+#game-status {
+    margin-bottom: 15px;
+    margin-top: 1px;
+    text-align: center;
+}
+#left-image {
+    width: 35%;
+}
+#inbetween-image {
+    width: 15%;
+}
+#right-image {
+    width: 35%;
+}
+#round-outcome {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#move-selection {
+    border-top: solid 2px rgba(46, 46, 46, 0.85);
+    box-shadow: 0px -3px 10px 1px #888;
+    padding-bottom: 1px;
+}
+.selection-img-container {
+    position: relative;
+    width: 100%;
+}
+.selection-img-container:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+.placeholder-text {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: 550;
+}
+.selection-img {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#round-middle-space {
+    text-align: center;
+    font-size: 36px;
+}
+#move-select-buttons {
+    margin: 0% 5% 5% 5%;
+    display: flex;
+    justify-content: space-between;
+}
+.selection-button {
+    background-color: white;
+    width: 30%;
+    padding: 20px;
+    border: solid;
+    border-color: rgba(46, 46, 46, 0.85);
+    border-width: 2px;
+    border-radius: 10px;
+}
+.btn-fx:hover {
+    box-shadow: 0px 0px 5px 1px black;
+}
+.btn-fx:active {
+    transform: scale(0.95);
+    transition: .2s;
+}
+.selection-button img {
+    display: block;
+    pointer-events: none;
+    width: 100%;
+    outline: none;
+}
+button::-moz-focus-inner {
+    border: 0;
+}
+#move-select-message {
+    text-align: center;
+    margin: 10px auto;
+    font-size: 18px
+}
